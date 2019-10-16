@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 } catch (IOException e) {
                     Log.e("Main Activity", "Problem making the HTTP request.", e);
                 }
-
                 return myString;
             }
 
@@ -88,8 +87,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-
+        int i = 0;
         myRecipeList = JsonUtils.parseJson(data);
+        i = myRecipeList.size();
+        Log.i("MainAct", Integer.toString(i));
+
         mAdapter = new RecipeAdapter(this, myRecipeList, new RecipeAdapter.ListItemClickListener() {
             @Override
             public void onListItemClick(int clickedItemIndex) {
@@ -98,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         recyclerView.setAdapter(mAdapter);
-
 
     }
 
