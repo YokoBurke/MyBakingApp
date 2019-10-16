@@ -1,0 +1,112 @@
+package com.example.android.mybakingapp;
+
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.android.mybakingapp.data.BakingRecipe;
+import com.example.android.mybakingapp.utilities.JsonUtils;
+import com.example.android.mybakingapp.utilities.NetworkUtils;
+import com.example.android.mybakingapp.utilities.RecipeAdapter;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
+
+    private static final int SEARCH_LOADER = 125;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private List<BakingRecipe> myRecipeList;
+    private RecipeAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycle_recipe_card);
+        recyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        getSupportLoaderManager().initLoader(SEARCH_LOADER, null, this);
+    }
+
+    @NonNull
+    @Override
+    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
+
+        return new AsyncTaskLoader<String>(this) {
+            String mRecipeJson;
+
+            @Override
+            public void onStartLoading() {
+                if (mRecipeJson != null) {
+                    deliverResult(mRecipeJson);
+                } else {
+                    forceLoad();
+                }
+            }
+
+            @Nullable
+            @Override
+            public String loadInBackground() {
+                URL recipeUrl = NetworkUtils.checkURL();
+                String myString = "";
+                try {
+                    myString = NetworkUtils.getResponseFromHttpUrl(recipeUrl);
+
+
+                } catch (IOException e) {
+                    Log.e("Main Activity", "Problem making the HTTP request.", e);
+                }
+
+                return myString;
+            }
+
+            @Override
+            public void deliverResult(String myRecipeJson) {
+                mRecipeJson = myRecipeJson;
+                super.deliverResult(myRecipeJson);
+
+            }
+
+        };
+
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+
+        myRecipeList = JsonUtils.parseJson(data);
+        mAdapter = new RecipeAdapter(this, myRecipeList, new RecipeAdapter.ListItemClickListener() {
+            @Override
+            public void onListItemClick(int clickedItemIndex) {
+
+            }
+        });
+
+        recyclerView.setAdapter(mAdapter);
+
+
+    }
+
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<String> loader) {
+
+    }
+
+
+}
