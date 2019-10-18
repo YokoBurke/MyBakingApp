@@ -3,6 +3,7 @@ package com.example.android.mybakingapp.utilities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
         String myRecipeName = myBakingRecipe.get(position).getName();
         String myServingNumber = Integer.toString(myBakingRecipe.get(position).getServings());
+
+        Log.i(LOG_TAG, myRecipeName);
 
         holder.recipeNameTextView.setText(myRecipeName);
         holder.servingsTextView.setText(myServingNumber);

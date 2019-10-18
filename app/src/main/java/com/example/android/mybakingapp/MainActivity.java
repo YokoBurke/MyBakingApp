@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         int i = 0;
         myRecipeList = JsonUtils.parseJson(data);
         i = myRecipeList.size();
-        Log.i("MainAct", Integer.toString(i));
+        Log.i("MainAct", "Recipe Count = " + Integer.toString(i));
 
         mAdapter = new RecipeAdapter(this, myRecipeList, new RecipeAdapter.ListItemClickListener() {
             @Override
@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         recyclerView.setAdapter(mAdapter);
+        int x = mAdapter.getItemCount();
+        Log.i("MainAct", "Adapter Count = " + Integer.toString(x));
 
     }
 
