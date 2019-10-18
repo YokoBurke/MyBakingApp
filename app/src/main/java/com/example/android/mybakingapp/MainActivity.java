@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,11 +24,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
 
+    final static String CLASS_NAME = MainActivity.class.getSimpleName();
+
     private static final int SEARCH_LOADER = 125;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<BakingRecipe> myRecipeList;
     private RecipeAdapter mAdapter;
+    private boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         recyclerView = (RecyclerView) findViewById(R.id.recycle_recipe_card);
         recyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+
+        isTablet = getResources().getBoolean(R.bool.is_tablet);
+
+        if (isTablet) {
+            mLayoutManager = new GridLayoutManager(this, 3);
+        } else {
+            mLayoutManager = new LinearLayoutManager(this);
+        }
+
+
 
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -91,6 +104,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         myRecipeList = JsonUtils.parseJson(data);
         i = myRecipeList.size();
         Log.i("MainAct", "Recipe Count = " + Integer.toString(i));
+        Log.i("Main acct", myRecipeList.get(0).getName());
+        Log.i("Main acct", myRecipeList.get(1).getName());
+        Log.i("Main acct", myRecipeList.get(2).getName());
+        Log.i("Main acct", myRecipeList.get(3).getName());
 
         mAdapter = new RecipeAdapter(this, myRecipeList, new RecipeAdapter.ListItemClickListener() {
             @Override
@@ -100,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         recyclerView.setAdapter(mAdapter);
+
         int x = mAdapter.getItemCount();
         Log.i("MainAct", "Adapter Count = " + Integer.toString(x));
 
