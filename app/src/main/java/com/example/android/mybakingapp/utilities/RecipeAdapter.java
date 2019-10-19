@@ -45,6 +45,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
             recipeNameTextView = (TextView) itemView.findViewById(R.id.recipe_name);
             servingsTextView = (TextView) itemView.findViewById(R.id.recipe_serving_number);
             itemView.setOnClickListener(this);
+
         }
 
         public void onClick(View v){
@@ -75,7 +76,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         String myRecipeName = myBakingRecipe.get(position).getName();
         String myServingNumber = Integer.toString(myBakingRecipe.get(position).getServings());
 
-        Log.i(LOG_TAG, myRecipeName);
+        Log.i(LOG_TAG, myRecipeName + "seriouisly!");
 
         holder.recipeNameTextView.setText(myRecipeName);
         holder.servingsTextView.setText(myServingNumber);

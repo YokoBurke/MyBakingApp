@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             mLayoutManager = new GridLayoutManager(this, 3);
         } else {
             mLayoutManager = new LinearLayoutManager(this);
+
         }
 
 
