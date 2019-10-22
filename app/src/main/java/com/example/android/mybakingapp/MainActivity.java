@@ -10,7 +10,6 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mybakingapp.data.BakingRecipe;
@@ -46,10 +45,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (isTablet) {
             mLayoutManager = new GridLayoutManager(this, 3);
         } else {
-            mLayoutManager = new LinearLayoutManager(this);
+            //mLayoutManager = new LinearLayoutManager(this);
+           // mLayoutManager = new GridLayoutManager(this, GridLayoutManager.VERTICAL); }
+            mLayoutManager = new GridLayoutManager(this, 1);
 
         }
-
 
 
         recyclerView.setLayoutManager(mLayoutManager);

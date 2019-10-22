@@ -2,7 +2,6 @@ package com.example.android.mybakingapp.utilities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.mybakingapp.IngredientStepsActivity;
+import com.example.android.mybakingapp.EachRecipeActivity;
 import com.example.android.mybakingapp.R;
 import com.example.android.mybakingapp.data.BakingRecipe;
 
@@ -21,9 +20,12 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = RecipeAdapter.class.getSimpleName();
+
     private List<BakingRecipe> myBakingRecipe;
     private Context myContext;
     final private ListItemClickListener mOnClickListener;
+
+    int x = 0;
 
     public interface ListItemClickListener {
         void onListItemClick(int clickedItemIndex);
@@ -52,9 +54,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
             int clickedPosition = getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
 
-            Intent intent = new Intent(myContext, IngredientStepsActivity.class);
-            intent.putExtra(Intent.EXTRA_TEXT, (Parcelable) myBakingRecipe.get(clickedPosition));
-
+            Intent intent = new Intent(myContext, EachRecipeActivity.class);
+            intent.putExtra(Intent.EXTRA_TEXT, myBakingRecipe.get(clickedPosition));
+            Log.i(LOG_TAG, myBakingRecipe.get(clickedPosition).getName());
             myContext.startActivity(intent);
         }
 
@@ -64,9 +66,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     @Override
     public RecipeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        Context context = parent.getContext();
         int myLayoutId = R.layout.main_card_item;
         View itemView = LayoutInflater.from(parent.getContext()).inflate(myLayoutId, parent, false);
         MyViewHolder recipeViewHolder = new MyViewHolder(itemView);
+
+        x++;
+        Log.i(LOG_TAG, "my inflater count " + Integer.toString(x));
         return recipeViewHolder;
     }
 
