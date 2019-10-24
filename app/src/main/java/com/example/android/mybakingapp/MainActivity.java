@@ -103,12 +103,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         int i = 0;
         myRecipeList = JsonUtils.parseJson(data);
-        i = myRecipeList.size();
-        Log.i("MainAct", "Recipe Count = " + Integer.toString(i));
-        Log.i("Main acct", myRecipeList.get(0).getName());
-        Log.i("Main acct", myRecipeList.get(1).getName());
-        Log.i("Main acct", myRecipeList.get(2).getName());
-        Log.i("Main acct", myRecipeList.get(3).getName());
+
 
         mAdapter = new RecipeAdapter(this, myRecipeList, new RecipeAdapter.ListItemClickListener() {
             @Override
