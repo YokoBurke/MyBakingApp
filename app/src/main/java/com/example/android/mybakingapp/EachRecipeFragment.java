@@ -7,7 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 
 /**
@@ -18,7 +22,12 @@ import androidx.fragment.app.Fragment;
  * Use the {@link EachRecipeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EachRecipeFragment extends Fragment {
+
+//https://stackoverflow.com/questions/41267446/how-to-get-loadermanager-initloader-working-within-a-fragment
+
+public class EachRecipeFragment extends Fragment implements LoaderManager.LoaderCallbacks<String> {
+
+    final static String CLASS_NAME = EachRecipeFragment.class.getSimpleName();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,6 +100,22 @@ public class EachRecipeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @NonNull
+    @Override
+    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<String> loader) {
+
     }
 
     /**
