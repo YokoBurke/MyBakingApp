@@ -1,135 +1,74 @@
 package com.example.android.mybakingapp;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.mybakingapp.data.BakingRecipe;
+import com.example.android.mybakingapp.data.Ingredients;
+import com.example.android.mybakingapp.data.Steps;
+import com.example.android.mybakingapp.utilities.IngredientsAdapter;
+import com.example.android.mybakingapp.utilities.StepsAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link EachRecipeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link EachRecipeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
 
-//https://stackoverflow.com/questions/41267446/how-to-get-loadermanager-initloader-working-within-a-fragment
+public class EachRecipeFragment extends Fragment{
 
-public class EachRecipeFragment extends Fragment implements LoaderManager.LoaderCallbacks<String> {
+    //https://medium.com/@Pang_Yao/android-fragment-use-recyclerview-cardview-4bc10beac446
 
     final static String CLASS_NAME = EachRecipeFragment.class.getSimpleName();
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView stepsRecyclerView;
+    private RecyclerView ingredientsRecyclerView;
 
-    private OnFragmentInteractionListener mListener;
+    private IngredientsAdapter mIngredientsAdapter;
+    private StepsAdapter mStepsAdapter;
 
+    private RecyclerView.LayoutManager stepsLayoutManager;
+    private RecyclerView.LayoutManager ingredientsLayoutManager;
+
+    private ArrayList<Ingredients> myIngredients;
+    private ArrayList<Steps> mySteps;
+    private BakingRecipe myBakingRecipe;
 
     public EachRecipeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EachRecipeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EachRecipeFragment newInstance(String param1, String param2) {
-        EachRecipeFragment fragment = new EachRecipeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+        Intent childIntent = getActivity().getIntent();
+        if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
+            myBakingRecipe = (BakingRecipe) childIntent.getParcelableExtra(Intent.EXTRA_TEXT);
+
+            Log.i(CLASS_NAME, "recipe is " + myBakingRecipe.getName());
+
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(myBakingRecipe.getName());
+
+            myIngredients = myBakingRecipe.getIngredients();
+            mySteps = myBakingRecipe.getSteps();
+            Log.i(CLASS_NAME, "Size of my steps is " + Integer.toString(mySteps.size()));
         }
     }
 
-    @Override
+        @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_each_recipe, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @NonNull
-    @Override
-    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return null;
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+                             Bundle savedInstanceState){
 
     }
 
-    @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
 
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
