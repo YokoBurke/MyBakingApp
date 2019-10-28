@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mybakingapp.data.BakingRecipe;
@@ -37,13 +38,11 @@ public class EachRecipeFragment extends Fragment{
     private ArrayList<Ingredients> myIngredients;
     private ArrayList<Steps> mySteps;
     private BakingRecipe myBakingRecipe;
+    private String myRecipeName;
 
     public EachRecipeFragment() {
         // Required empty public constructor
     }
-
-
-
 
 
     @Override
@@ -53,8 +52,8 @@ public class EachRecipeFragment extends Fragment{
         Intent childIntent = getActivity().getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
             myBakingRecipe = (BakingRecipe) childIntent.getParcelableExtra(Intent.EXTRA_TEXT);
-
-            Log.i(CLASS_NAME, "recipe is " + myBakingRecipe.getName());
+            myRecipeName = myBakingRecipe.getName();
+            Log.i(CLASS_NAME, "recipe is " + myRecipeName);
 
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(myBakingRecipe.getName());
 
@@ -68,7 +67,35 @@ public class EachRecipeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
-    }
+        View view =inflater.inflate(R.layout.fragment_each_recipe, container, false);
+
+        ingredientsRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_ingredient);
+        ingredientsRecyclerView.setHasFixedSize(true);
+
+        stepsRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_steps);
+        stepsRecyclerView.setHasFixedSize(true);
+
+            ingredientsLayoutManager = new LinearLayoutManager(getActivity());
+            stepsLayoutManager = new LinearLayoutManager(getActivity());
+            mIngredientsAdapter = new IngredientsAdapter(getActivity(), myIngredients);
+
+            mStepsAdapter = new StepsAdapter(getActivity(), mySteps, new StepsAdapter.ListItemClickListner() {
+                @Override
+                public void onListItemClick(int clickedItemIndex) {
+
+                }
+            }, myRecipeName);
+
+            ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
+            ingredientsRecyclerView.setAdapter(mIngredientsAdapter);
+
+            stepsRecyclerView.setLayoutManager(stepsLayoutManager);
+            stepsRecyclerView.setAdapter(mStepsAdapter);
+
+            Log.i(CLASS_NAME, "Adapter Set");
+
+            return view;
+        }
 
 
 }
