@@ -23,6 +23,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
     private Context myContext;
     private String myRecipeName;
 
+
     final private ListItemClickListner mOnClickListener;
 
 
@@ -35,17 +36,14 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
         myContext = context;
         mOnClickListener = listener;
         myRecipeName = recipeName;
-        Log.i(LOG_TAG, "the number of steps in constructor is " + Integer.toString(myStepsData.size()));
     }
 
     class MyStepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         public TextView shortDescTextView;
         public MyStepsViewHolder(View itemView) {
             super(itemView);
             shortDescTextView = (TextView) itemView.findViewById(R.id.short_desc_steps);
-
             itemView.setOnClickListener(this);
 
         }
@@ -81,9 +79,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
 
         String mySteps = myStepsData.get(position).getShortDescription();
         Log.i(LOG_TAG, mySteps);
-
         holder.shortDescTextView.setText(mySteps);
-
 
     }
 

@@ -59,7 +59,7 @@ public class EachRecipeFragment extends Fragment{
 
             myIngredients = myBakingRecipe.getIngredients();
             mySteps = myBakingRecipe.getSteps();
-            Log.i(CLASS_NAME, "Size of my steps is " + Integer.toString(mySteps.size()));
+            //Log.i(CLASS_NAME, "Size of my steps is " + Integer.toString(mySteps.size()));
         }
     }
 
@@ -70,10 +70,10 @@ public class EachRecipeFragment extends Fragment{
         View view =inflater.inflate(R.layout.fragment_each_recipe, container, false);
 
         ingredientsRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_ingredient);
-        ingredientsRecyclerView.setHasFixedSize(true);
+        ingredientsRecyclerView.setHasFixedSize(false);
 
         stepsRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_steps);
-        stepsRecyclerView.setHasFixedSize(true);
+        stepsRecyclerView.setHasFixedSize(false);
 
             ingredientsLayoutManager = new LinearLayoutManager(getActivity());
             stepsLayoutManager = new LinearLayoutManager(getActivity());
@@ -86,13 +86,13 @@ public class EachRecipeFragment extends Fragment{
                 }
             }, myRecipeName);
 
+            Log.i(CLASS_NAME, "Size of my steps is " + Integer.toString(mySteps.size()));
+
             ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
             ingredientsRecyclerView.setAdapter(mIngredientsAdapter);
 
             stepsRecyclerView.setLayoutManager(stepsLayoutManager);
             stepsRecyclerView.setAdapter(mStepsAdapter);
-
-            Log.i(CLASS_NAME, "Adapter Set");
 
             return view;
         }
