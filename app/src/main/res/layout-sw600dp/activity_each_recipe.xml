@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
     tools:context=".EachRecipeActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+<fragment
+    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_container"
+    android:name="com.example.android.mybakingapp.EachRecipeFragment"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_ingredient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_steps"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp" />
+<View
+    android:layout_width="1dp"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"/>
 
 </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>

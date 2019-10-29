@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 public class EachRecipeActivity extends AppCompatActivity {
 
     final static String ClASS_Name = EachRecipeActivity.class.getSimpleName();
+    private boolean mTwoPain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
