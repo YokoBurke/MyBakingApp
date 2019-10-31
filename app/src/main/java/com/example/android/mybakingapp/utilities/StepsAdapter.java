@@ -1,6 +1,7 @@
 package com.example.android.mybakingapp.utilities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.mybakingapp.EachStepActivity;
 import com.example.android.mybakingapp.R;
 import com.example.android.mybakingapp.data.Steps;
 
@@ -51,16 +53,16 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
         @Override
         public void onClick(View view) {
 
-            /* int clickedPosition = getAdapterPosition();
+            int clickedPosition = getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
 
-            Intent intent = new Intent(myContext, StepVideoActivity.class);
-            intent.putExtra(Intent.EXTRA_TEXT, myStepsData.get(clickedPosition));
-            intent.putExtra("recipe_name", recipeName);
+            Intent intentMovie = new Intent(myContext, EachStepActivity.class);
+            intentMovie.putExtra(Intent.EXTRA_TEXT, myStepsData.get(clickedPosition));
+            intentMovie.putExtra("recipe_name", myRecipeName);
 
-            intent.putParcelableArrayListExtra("vlist", myStepsData);
+            //intentMovie.putParcelableArrayListExtra("vlist", myStepsData);
 
-            myContext.startActivity(intent); */
+            myContext.startActivity(intentMovie);
 
         }
     }
