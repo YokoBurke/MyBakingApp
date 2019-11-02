@@ -55,8 +55,15 @@ public class MovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
-        /* videoURL  = (TextView) view.findViewById(R.id.my_video);
-        videoURL.setText(mySteps.getVideoURL()); */
+
+
+            thisVideoURL = getArguments().getString("stepurl");
+
+
+
+        Log.i(ClASS_NAME, thisVideoURL);
+        videoURL  = (TextView) view.findViewById(R.id.my_video);
+        videoURL.setText("I LOVE YOU");
 
         return view;
     }

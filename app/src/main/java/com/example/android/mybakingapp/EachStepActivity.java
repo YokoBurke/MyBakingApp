@@ -32,6 +32,9 @@ public class EachStepActivity extends AppCompatActivity {
     Button nextButton;
     Button previousButton;
 
+    MovieFragment movieFragment;
+    StepFragment stepFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +58,8 @@ public class EachStepActivity extends AppCompatActivity {
 
         }
 
-        MovieFragment movieFragment = new MovieFragment();
-        StepFragment stepFragment = new StepFragment();
+        movieFragment = new MovieFragment();
+        stepFragment = new StepFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -69,11 +72,12 @@ public class EachStepActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Do Something
-                if (currentStep >= myStepsData.size()){
+                if (currentStep >= myStepsData.size() -1){
                     Toast.makeText(getApplicationContext(), "This is the last step.", Toast.LENGTH_LONG).show();
                 } else {
                     currentStep++;
-                    myStepsData.get(currentStep);
+
+                    updateStepInfo(currentStep);
                 }
             }
         });
@@ -88,7 +92,8 @@ public class EachStepActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This is the first step.", Toast.LENGTH_LONG).show();
                 } else {
                     currentStep--;
-                    myStepsData.get(currentStep);
+
+                    updateStepInfo(currentStep);
                 }
 
             }
@@ -99,8 +104,16 @@ public class EachStepActivity extends AppCompatActivity {
         public void updateStepInfo(int myStepNo){
             myStepVideoUrl = myStepsData.get(myStepNo).getDescription();
             myStepDescription = myStepsData.get(myStepNo).getVideoURL();
+
+            Log.i(ClASS_NAME, myStepVideoUrl);
+            Log.i(ClASS_NAME, myStepDescription);
+
+            Bundle bundle = new Bundle();
+            bundle.putString("stepurl", myStepVideoUrl);
+            bundle.putString("step description", myStepDescription);
+
+            movieFragment.setArguments(bundle);
+            stepFragment.setArguments(bundle);
         }
 
-        public String getMyStepDescription() { return myStepDescription; }
-        public String getMyStepVideoUrl() { return myStepVideoUrl; }
 }
