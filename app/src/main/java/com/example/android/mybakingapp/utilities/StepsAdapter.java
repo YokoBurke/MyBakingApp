@@ -60,7 +60,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
             intentMovie.putExtra(Intent.EXTRA_TEXT, myStepsData.get(clickedPosition));
             intentMovie.putExtra("recipe_name", myRecipeName);
 
-            //intentMovie.putParcelableArrayListExtra("vlist", myStepsData);
+            intentMovie.putParcelableArrayListExtra("vlist", myStepsData);
 
             myContext.startActivity(intentMovie);
 

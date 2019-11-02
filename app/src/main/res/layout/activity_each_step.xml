@@ -19,10 +19,27 @@
             android:id="@+id/step_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <FrameLayout
-            android:id="@+id/button_container"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/steps_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Previous"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"/>
+            <Button
+                android:id="@+id/steps_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>

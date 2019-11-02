@@ -20,11 +20,8 @@ public class MovieFragment extends Fragment {
 
     final static String ClASS_NAME = MovieFragment.class.getSimpleName();
 
-    Steps mySteps;
-    private ArrayList<Steps> myStepsData;
-    int currentStep;
-    private boolean videoExists;
-    String myRecipeName;
+
+    private String thisVideoURL;
 
     TextView videoURL;
 
@@ -36,7 +33,9 @@ public class MovieFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent movieChildIntent = getActivity().getIntent();
+
+
+        /* Intent movieChildIntent = getActivity().getIntent();
         if (movieChildIntent.hasExtra(Intent.EXTRA_TEXT)) {
 
             mySteps = (Steps) movieChildIntent.getParcelableExtra(Intent.EXTRA_TEXT);
@@ -48,7 +47,7 @@ public class MovieFragment extends Fragment {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(myRecipeName);
 
 
-        }
+        } */
     }
 
 
@@ -56,8 +55,8 @@ public class MovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
-        videoURL  = (TextView) view.findViewById(R.id.my_video);
-        videoURL.setText(mySteps.getVideoURL());
+        /* videoURL  = (TextView) view.findViewById(R.id.my_video);
+        videoURL.setText(mySteps.getVideoURL()); */
 
         return view;
     }
