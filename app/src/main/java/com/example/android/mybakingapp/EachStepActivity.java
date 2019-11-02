@@ -47,7 +47,7 @@ public class EachStepActivity extends AppCompatActivity {
             myStepsData = childIntent.getParcelableArrayListExtra("vlist");
 
             myStepVideoUrl = mySteps.getVideoURL();
-            Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep));
+            Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep) + Integer.toString(myStepsData.size()));
 
 
             getSupportActionBar().setTitle(myRecipeName);
@@ -69,7 +69,21 @@ public class EachStepActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Do Something
-                if (currentStep == 0){
+                if (currentStep >= myStepsData.size()){
+                    Toast.makeText(getApplicationContext(), "This is the last step.", Toast.LENGTH_LONG).show();
+                } else {
+                    currentStep++;
+                }
+            }
+        });
+
+
+        previousButton = (Button) findViewById(R.id.steps_previous);
+        previousButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //Do Something
+                if (currentStep <= 0){
                     Toast.makeText(getApplicationContext(), "This is the first step.", Toast.LENGTH_LONG).show();
                 } else {
                     currentStep--;
@@ -78,13 +92,5 @@ public class EachStepActivity extends AppCompatActivity {
             }
         });
 
-        previousButton = (Button) findViewById(R.id.steps_previous);
-        previousButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                //Do Something
-                currentStep++;
-            }
-        });
     }
 }
