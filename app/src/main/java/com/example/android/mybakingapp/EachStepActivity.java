@@ -73,6 +73,7 @@ public class EachStepActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This is the last step.", Toast.LENGTH_LONG).show();
                 } else {
                     currentStep++;
+                    myStepsData.get(currentStep);
                 }
             }
         });
@@ -87,10 +88,19 @@ public class EachStepActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This is the first step.", Toast.LENGTH_LONG).show();
                 } else {
                     currentStep--;
+                    myStepsData.get(currentStep);
                 }
 
             }
         });
 
     }
+
+        public void updateStepInfo(int myStepNo){
+            myStepVideoUrl = myStepsData.get(myStepNo).getDescription();
+            myStepDescription = myStepsData.get(myStepNo).getVideoURL();
+        }
+
+        public String getMyStepDescription() { return myStepDescription; }
+        public String getMyStepVideoUrl() { return myStepVideoUrl; }
 }
