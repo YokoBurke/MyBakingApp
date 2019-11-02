@@ -3,6 +3,9 @@ package com.example.android.mybakingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -23,7 +26,11 @@ public class EachStepActivity extends AppCompatActivity {
     String myRecipeName;
     int currentStep;
 
-    String myVideoURL;
+    String myStepVideoUrl;
+    String myStepDescription;
+
+    Button nextButton;
+    Button previousButton;
 
 
     @Override
@@ -39,8 +46,8 @@ public class EachStepActivity extends AppCompatActivity {
             currentStep = mySteps.getId();
             myStepsData = childIntent.getParcelableArrayListExtra("vlist");
 
-            myVideoURL = mySteps.getVideoURL();
-            Log.i(ClASS_NAME, "Video URL: " + myVideoURL);
+            myStepVideoUrl = mySteps.getVideoURL();
+            Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep));
 
 
             getSupportActionBar().setTitle(myRecipeName);
@@ -56,5 +63,28 @@ public class EachStepActivity extends AppCompatActivity {
                 .add(R.id.video_container, movieFragment)
                 .add(R.id.step_container, stepFragment)
                 .commit();
+
+        nextButton = (Button) findViewById(R.id.steps_next);
+        nextButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //Do Something
+                if (currentStep == 0){
+                    Toast.makeText(getApplicationContext(), "This is the first step.", Toast.LENGTH_LONG).show();
+                } else {
+                    currentStep--;
+                }
+
+            }
+        });
+
+        previousButton = (Button) findViewById(R.id.steps_previous);
+        previousButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //Do Something
+                currentStep++;
+            }
+        });
     }
 }
