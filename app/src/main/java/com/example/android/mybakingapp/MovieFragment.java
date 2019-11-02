@@ -56,14 +56,20 @@ public class MovieFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
 
+        videoURL  = (TextView) view.findViewById(R.id.my_video);
+
         if (getArguments() != null) {
             thisVideoURL = getArguments().getString("stepurl");
+            Log.i(ClASS_NAME, thisVideoURL);
+            videoURL.setText(thisVideoURL);
+        } else {
+            videoURL.setText("Is this working??");
         }
 
 
-        Log.i(ClASS_NAME, thisVideoURL);
-        videoURL  = (TextView) view.findViewById(R.id.my_video);
-        videoURL.setText("Is this working??");
+
+
+
 
         return view;
     }
