@@ -16,6 +16,7 @@
     android:name="com.example.android.mybakingapp.EachRecipeFragment"/>
 
 <View
+    android:id="@+id/steps_separator"
     android:layout_width="1dp"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"/>

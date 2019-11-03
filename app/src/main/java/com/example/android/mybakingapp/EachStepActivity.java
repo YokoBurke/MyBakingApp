@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -17,7 +18,7 @@ import com.example.android.mybakingapp.data.Steps;
 
 import java.util.ArrayList;
 
-public class EachStepActivity extends AppCompatActivity {
+public class EachStepActivity extends AppCompatActivity implements MovieFragment.OnStepButtonClickListener {
 
     final static String ClASS_NAME = EachStepActivity.class.getSimpleName();
 
@@ -126,4 +127,16 @@ public class EachStepActivity extends AppCompatActivity {
             return myStepVideoUrl;
         }
 
+        @Override
+        public void onAttachFragment(Fragment fragment) {
+            if (fragment instanceof MovieFragment){
+                movieFragment = (MovieFragment) fragment;
+                movieFragment.setOnStepButtonListener(this);
+            }
+        }
+
+    @Override
+    public void onStepButtonSelected(int myNewStep) {
+
+    }
 }

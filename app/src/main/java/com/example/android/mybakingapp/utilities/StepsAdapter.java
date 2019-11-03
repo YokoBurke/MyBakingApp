@@ -28,6 +28,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
 
     final private ListItemClickListner mOnClickListener;
 
+    private boolean isTablet;
+
 
     public interface ListItemClickListner{
         void onListItemClick(int clickedItemIndex);
@@ -55,14 +57,20 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
 
             int clickedPosition = getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
+            Intent intentMovie;
 
-            Intent intentMovie = new Intent(myContext, EachStepActivity.class);
-            intentMovie.putExtra(Intent.EXTRA_TEXT, myStepsData.get(clickedPosition));
-            intentMovie.putExtra("recipe_name", myRecipeName);
+            if (myContext.getResources().getBoolean(R.bool.is_tablet)) {
+                intentMovie = new Intent(myContext, EachStepActivity.class);
+            } else {
+                intentMovie = new Intent(myContext, EachStepActivity.class);
+                intentMovie.putExtra(Intent.EXTRA_TEXT, myStepsData.get(clickedPosition));
+                intentMovie.putExtra("recipe_name", myRecipeName);
 
-            intentMovie.putParcelableArrayListExtra("vlist", myStepsData);
+                intentMovie.putParcelableArrayListExtra("vlist", myStepsData);
 
-            myContext.startActivity(intentMovie);
+                myContext.startActivity(intentMovie);
+            }
+
 
         }
     }

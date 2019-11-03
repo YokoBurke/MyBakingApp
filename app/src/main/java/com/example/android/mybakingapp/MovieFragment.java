@@ -26,7 +26,7 @@ public class MovieFragment extends Fragment {
 
     OnStepButtonClickListener mCallback;
 
-    public void OnStepButtonListener(OnStepButtonClickListener callback){
+    public void setOnStepButtonListener(OnStepButtonClickListener callback){
         mCallback = callback;
     }
 
