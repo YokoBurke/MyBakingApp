@@ -1,5 +1,6 @@
 package com.example.android.mybakingapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +24,26 @@ public class MovieFragment extends Fragment {
     private String thisVideoURL;
     TextView videoURL;
 
+    OnStepButtonClickListener mCallback;
 
+    public void OnStepButtonListener(OnStepButtonClickListener callback){
+        mCallback = callback;
+    }
+
+    public interface OnStepButtonClickListener{
+        void onStepButtonSelected(int myNewStep);
+    }
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+
+        try {
+            mCallback = (OnStepButtonClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnStepButtonClickListener");
+        }
+    }
 
     public MovieFragment() {
         // Required empty public constructor
@@ -57,14 +77,17 @@ public class MovieFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
 
         videoURL  = (TextView) view.findViewById(R.id.my_video);
+        EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
+        String myDataFromActivity = eachStepActivity.getMyData();
+        videoURL.setText(myDataFromActivity);
 
-        if (getArguments() != null) {
+        /* if (getArguments() != null) {
             thisVideoURL = getArguments().getString("stepurl");
             Log.i(ClASS_NAME, thisVideoURL);
             videoURL.setText(thisVideoURL);
         } else {
             videoURL.setText("Is this working??");
-        }
+        } */
 
 
 

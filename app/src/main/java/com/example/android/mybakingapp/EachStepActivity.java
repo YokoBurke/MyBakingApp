@@ -27,8 +27,8 @@ public class EachStepActivity extends AppCompatActivity {
     String myRecipeName;
     int currentStep;
 
-    String myStepVideoUrl;
-    String myStepDescription;
+    private String myStepVideoUrl;
+    private String myStepDescription;
 
     Button nextButton;
     Button previousButton;
@@ -121,5 +121,9 @@ public class EachStepActivity extends AppCompatActivity {
             stepFragment.setArguments(bundle);
         }
 
+
+        public String getMyData() {
+            return myStepVideoUrl;
+        }
 
 }
