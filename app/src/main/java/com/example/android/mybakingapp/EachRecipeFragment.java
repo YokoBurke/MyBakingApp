@@ -71,9 +71,11 @@ public class EachRecipeFragment extends Fragment{
 
         ingredientsRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_ingredient);
         ingredientsRecyclerView.setHasFixedSize(false);
+        ingredientsRecyclerView.setNestedScrollingEnabled(false);
 
         stepsRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_steps);
         stepsRecyclerView.setHasFixedSize(false);
+        stepsRecyclerView.setNestedScrollingEnabled(false);
 
             ingredientsLayoutManager = new LinearLayoutManager(getActivity());
             stepsLayoutManager = new LinearLayoutManager(getActivity());

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.android.mybakingapp.data.BakingRecipe;
 import com.example.android.mybakingapp.data.Ingredients;
@@ -35,11 +36,15 @@ public class EachStepActivity extends AppCompatActivity {
     MovieFragment movieFragment;
     StepFragment stepFragment;
 
+    private boolean isTablet;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_each_step);
+
+
 
         Intent childIntent = this.getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
@@ -115,5 +120,6 @@ public class EachStepActivity extends AppCompatActivity {
             movieFragment.setArguments(bundle);
             stepFragment.setArguments(bundle);
         }
+
 
 }

@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 public class MovieFragment extends Fragment {
 
+
     final static String ClASS_NAME = MovieFragment.class.getSimpleName();
-
-
     private String thisVideoURL;
-
     TextView videoURL;
+
+
 
     public MovieFragment() {
         // Required empty public constructor
