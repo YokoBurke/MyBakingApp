@@ -31,7 +31,7 @@ public class MovieFragment extends Fragment {
     }
 
     public interface OnStepButtonClickListener{
-        void onStepButtonSelected(int myNewStep);
+        void onStepButtonSelected(String myNewMovieUrl);
     }
 
     @Override

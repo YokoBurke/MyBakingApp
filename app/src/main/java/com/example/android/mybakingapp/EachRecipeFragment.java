@@ -1,5 +1,6 @@
 package com.example.android.mybakingapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,30 @@ public class EachRecipeFragment extends Fragment{
     private ArrayList<Steps> mySteps;
     private BakingRecipe myBakingRecipe;
     private String myRecipeName;
+
+    OnStepClickListener stepCallBack;
+
+    public void setOnStepClickListener (OnStepClickListener callback){
+        stepCallBack = callback;
+    }
+
+
+    public interface OnStepClickListener {
+        void onStepSelected(int Position);
+    }
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+
+        try {
+            stepCallBack = (OnStepClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must imlement OnStepClickListener");
+        }
+    }
+
+
 
     public EachRecipeFragment() {
         // Required empty public constructor

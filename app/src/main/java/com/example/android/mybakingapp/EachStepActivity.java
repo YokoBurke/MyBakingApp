@@ -136,7 +136,7 @@ public class EachStepActivity extends AppCompatActivity implements MovieFragment
         }
 
     @Override
-    public void onStepButtonSelected(int myNewStep) {
+    public void onStepButtonSelected(String movieURL) {
 
     }
 }
