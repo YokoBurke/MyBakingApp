@@ -77,8 +77,7 @@ public class EachRecipeFragment extends Fragment{
         Intent childIntent = getActivity().getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
             myBakingRecipe = (BakingRecipe) childIntent.getParcelableExtra(Intent.EXTRA_TEXT);
-            myRecipeName = myBakingRecipe.getName();
-            Log.i(CLASS_NAME, "recipe is " + myRecipeName);
+
 
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(myBakingRecipe.getName());
 

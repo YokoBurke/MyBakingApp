@@ -22,8 +22,9 @@ public class MovieFragment extends Fragment {
 
     final static String ClASS_NAME = MovieFragment.class.getSimpleName();
     private String thisVideoURL;
-    TextView videoURL;
-
+    TextView videoUrlText;
+    private int mListIndex;
+    String myVideoUrl;
     OnStepButtonClickListener mCallback;
 
     public void setOnStepButtonListener(OnStepButtonClickListener callback){
@@ -76,10 +77,12 @@ public class MovieFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
 
-        videoURL  = (TextView) view.findViewById(R.id.my_video);
+        videoUrlText  = (TextView) view.findViewById(R.id.my_video);
         EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
-        String myDataFromActivity = eachStepActivity.getMyData();
-        videoURL.setText(myDataFromActivity);
+        myVideoUrl = eachStepActivity.getMyData();
+
+        videoUrlText.setText(myVideoUrl);
+
 
         /* if (getArguments() != null) {
             thisVideoURL = getArguments().getString("stepurl");
@@ -89,13 +92,10 @@ public class MovieFragment extends Fragment {
             videoURL.setText("Is this working??");
         } */
 
-
-
-
-
-
         return view;
     }
+    public void setMovieUrl(String newUrl){
 
+    }
 
 }
