@@ -41,27 +41,8 @@ public class EachRecipeFragment extends Fragment{
     private BakingRecipe myBakingRecipe;
     private String myRecipeName;
 
-    OnStepClickListener stepCallBack;
-
-    public void setOnStepClickListener (OnStepClickListener callback){
-        stepCallBack = callback;
-    }
 
 
-    public interface OnStepClickListener {
-        void onStepSelected(int Position);
-    }
-
-    @Override
-    public void onAttach(Context context){
-        super.onAttach(context);
-
-        try {
-            stepCallBack = (OnStepClickListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must imlement OnStepClickListener");
-        }
-    }
 
 
 
@@ -122,6 +103,7 @@ public class EachRecipeFragment extends Fragment{
 
             return view;
         }
+
 
 
 }

@@ -77,11 +77,11 @@ public class MovieFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
 
-        videoUrlText  = (TextView) view.findViewById(R.id.my_video);
+        /*videoUrlText  = (TextView) view.findViewById(R.id.my_video);
         EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
         myVideoUrl = eachStepActivity.getMyData();
 
-        videoUrlText.setText(myVideoUrl);
+        videoUrlText.setText(myVideoUrl); */
 
 
         /* if (getArguments() != null) {

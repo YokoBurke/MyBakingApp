@@ -18,7 +18,7 @@ import com.example.android.mybakingapp.data.Steps;
 
 import java.util.ArrayList;
 
-public class EachStepActivity extends AppCompatActivity implements MovieFragment.OnStepButtonClickListener {
+public class EachStepActivity extends AppCompatActivity {
 
     final static String ClASS_NAME = EachStepActivity.class.getSimpleName();
 
@@ -127,16 +127,5 @@ public class EachStepActivity extends AppCompatActivity implements MovieFragment
             return myStepVideoUrl;
         }
 
-        @Override
-        public void onAttachFragment(Fragment fragment) {
-            if (fragment instanceof MovieFragment){
-                movieFragment = (MovieFragment) fragment;
-                movieFragment.setOnStepButtonListener(this);
-            }
-        }
 
-    @Override
-    public void onStepButtonSelected(String movieURL) {
-
-    }
 }

@@ -15,7 +15,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EachRecipeActivity extends AppCompatActivity implements EachRecipeFragment.OnStepClickListener {
+public class EachRecipeActivity extends AppCompatActivity {
 
     final static String ClASS_Name = EachRecipeActivity.class.getSimpleName();
     private boolean isTablet;
@@ -48,7 +48,7 @@ public class EachRecipeActivity extends AppCompatActivity implements EachRecipeF
 
     }
 
-    @Override
+    /* @Override
     public void onStepSelected(int position) {
 
         if (isTablet){
@@ -62,6 +62,6 @@ public class EachRecipeActivity extends AppCompatActivity implements EachRecipeF
 
 
 
+    }*/
 
-    }
 }
