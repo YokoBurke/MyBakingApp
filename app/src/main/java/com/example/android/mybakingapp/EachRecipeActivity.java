@@ -40,12 +40,20 @@ public class EachRecipeActivity extends AppCompatActivity {
         isTablet = getResources().getBoolean(R.bool.is_tablet);
         Log.i(ClASS_Name, "IsTablet Status " + Boolean.toString(isTablet));
 
+
         EachRecipeFragment eachRecipeFragment = new EachRecipeFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.fragment_container, eachRecipeFragment)
                 .commit();
 
+
+        if (isTablet){
+            MovieFragment movieFragment =  new MovieFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.video_container, movieFragment)
+                    .commit();
+        }
     }
 
     /* @Override

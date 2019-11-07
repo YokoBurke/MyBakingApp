@@ -25,26 +25,7 @@ public class MovieFragment extends Fragment {
     TextView videoUrlText;
     private int mListIndex;
     String myVideoUrl;
-    OnStepButtonClickListener mCallback;
 
-    public void setOnStepButtonListener(OnStepButtonClickListener callback){
-        mCallback = callback;
-    }
-
-    public interface OnStepButtonClickListener{
-        void onStepButtonSelected(String myNewMovieUrl);
-    }
-
-    @Override
-    public void onAttach(Context context){
-        super.onAttach(context);
-
-        try {
-            mCallback = (OnStepButtonClickListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnStepButtonClickListener");
-        }
-    }
 
     public MovieFragment() {
         // Required empty public constructor
@@ -54,7 +35,7 @@ public class MovieFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        Log.i(ClASS_NAME, "OnCreateView is Called 2");
 
         /* Intent movieChildIntent = getActivity().getIntent();
         if (movieChildIntent.hasExtra(Intent.EXTRA_TEXT)) {
@@ -76,6 +57,8 @@ public class MovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
+
+        Log.i(ClASS_NAME, "OnCreateView is Called");
 
         /*videoUrlText  = (TextView) view.findViewById(R.id.my_video);
         EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
