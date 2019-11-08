@@ -37,6 +37,7 @@ public class MovieFragment extends Fragment {
 
         Log.i(ClASS_NAME, "OnCreateView is Called 2");
 
+
         /* Intent movieChildIntent = getActivity().getIntent();
         if (movieChildIntent.hasExtra(Intent.EXTRA_TEXT)) {
 
@@ -58,13 +59,13 @@ public class MovieFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_movie, container, false);
 
-        Log.i(ClASS_NAME, "OnCreateView is Called");
+        videoUrlText  = (TextView) view.findViewById(R.id.my_video);
+        videoUrlText.setText(myVideoUrl);
 
-        /*videoUrlText  = (TextView) view.findViewById(R.id.my_video);
-        EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
+        /* EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
         myVideoUrl = eachStepActivity.getMyData();
 
-        videoUrlText.setText(myVideoUrl); */
+         */
 
 
         /* if (getArguments() != null) {
@@ -78,7 +79,7 @@ public class MovieFragment extends Fragment {
         return view;
     }
     public void setMovieUrl(String newUrl){
-
+        myVideoUrl = newUrl;
     }
 
 }

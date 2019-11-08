@@ -22,11 +22,14 @@ public class EachRecipeActivity extends AppCompatActivity {
     private ArrayList<Steps> mySteps;
     private BakingRecipe myBakingRecipe;
     private String myRecipeName;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_each_recipe);
+
+        int i = 0;
 
 
         Intent childIntent = getIntent();
@@ -50,11 +53,17 @@ public class EachRecipeActivity extends AppCompatActivity {
 
         if (isTablet){
             MovieFragment movieFragment =  new MovieFragment();
+
             fragmentManager.beginTransaction()
                     .add(R.id.video_container, movieFragment)
                     .commit();
+
+            movieFragment.setMovieUrl(mySteps.get(i).getVideoURL());
+            Log.i(ClASS_Name, mySteps.get(0).getVideoURL());
+
         }
     }
+
 
     /* @Override
     public void onStepSelected(int position) {

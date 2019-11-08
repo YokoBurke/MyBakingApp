@@ -41,11 +41,6 @@ public class EachRecipeFragment extends Fragment{
     private BakingRecipe myBakingRecipe;
     private String myRecipeName;
 
-
-
-
-
-
     public EachRecipeFragment() {
         // Required empty public constructor
     }
@@ -58,13 +53,11 @@ public class EachRecipeFragment extends Fragment{
         Intent childIntent = getActivity().getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
             myBakingRecipe = (BakingRecipe) childIntent.getParcelableExtra(Intent.EXTRA_TEXT);
-
-
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(myBakingRecipe.getName());
-
             myIngredients = myBakingRecipe.getIngredients();
             mySteps = myBakingRecipe.getSteps();
-            //Log.i(CLASS_NAME, "Size of my steps is " + Integer.toString(mySteps.size()));
+
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(myRecipeName);
+
         }
     }
 
