@@ -31,7 +31,7 @@ public class EachRecipeActivity extends AppCompatActivity {
 
         int i = 0;
 
-
+        //Maybe this is not necessary.
         Intent childIntent = getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
             myBakingRecipe = (BakingRecipe) childIntent.getParcelableExtra(Intent.EXTRA_TEXT);

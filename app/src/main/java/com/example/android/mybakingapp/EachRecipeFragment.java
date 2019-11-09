@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -39,7 +40,19 @@ public class EachRecipeFragment extends Fragment{
     private ArrayList<Ingredients> myIngredients;
     private ArrayList<Steps> mySteps;
     private BakingRecipe myBakingRecipe;
+    private boolean isTablet;
     private String myRecipeName;
+
+    OnStepClickListener mCallback;
+
+    public interface OnStepClickListener {
+        void onStepSelected(int position);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     public EachRecipeFragment() {
         // Required empty public constructor
@@ -49,6 +62,9 @@ public class EachRecipeFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        isTablet = getActivity().getResources().getBoolean(R.bool.is_tablet);
+        Log.i(CLASS_NAME, "IsTablet Status " + Boolean.toString(isTablet));
 
         Intent childIntent = getActivity().getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
@@ -79,12 +95,21 @@ public class EachRecipeFragment extends Fragment{
             stepsLayoutManager = new LinearLayoutManager(getActivity());
             mIngredientsAdapter = new IngredientsAdapter(getActivity(), myIngredients);
 
-            mStepsAdapter = new StepsAdapter(getActivity(), mySteps, new StepsAdapter.ListItemClickListner() {
+            mStepsAdapter = new StepsAdapter(getActivity(), mySteps, myRecipeName, new StepsAdapter.ListItemClickListener() {
                 @Override
                 public void onListItemClick(int clickedItemIndex) {
 
+                    if (!isTablet) {
+                        Intent intentMovie;
+                        intentMovie = new Intent(getActivity(), EachStepActivity.class);
+                        intentMovie.putExtra(Intent.EXTRA_TEXT, mySteps.get(clickedItemIndex));
+                        intentMovie.putExtra("recipe_name", myRecipeName);
+                        intentMovie.putParcelableArrayListExtra("vlist", mySteps);
+                        getActivity().startActivity(intentMovie);
+                    }
+
                 }
-            }, myRecipeName);
+            });
 
             Log.i(CLASS_NAME, "Size of my steps is " + Integer.toString(mySteps.size()));
 
