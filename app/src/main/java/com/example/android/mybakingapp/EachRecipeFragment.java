@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -41,7 +42,10 @@ public class EachRecipeFragment extends Fragment{
     private ArrayList<Steps> mySteps;
     private BakingRecipe myBakingRecipe;
     private boolean isTablet;
+    private String myVideoUrl;
     private String myRecipeName;
+
+    private TextView myVideoUrlText;
 
     OnStepClickListener mCallback;
 
@@ -52,6 +56,7 @@ public class EachRecipeFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        myVideoUrlText = (TextView) getActivity().findViewById(R.id.my_video);
     }
 
     public EachRecipeFragment() {
@@ -64,6 +69,7 @@ public class EachRecipeFragment extends Fragment{
         super.onCreate(savedInstanceState);
 
         isTablet = getActivity().getResources().getBoolean(R.bool.is_tablet);
+
         Log.i(CLASS_NAME, "IsTablet Status " + Boolean.toString(isTablet));
 
         Intent childIntent = getActivity().getIntent();
@@ -106,6 +112,12 @@ public class EachRecipeFragment extends Fragment{
                         intentMovie.putExtra("recipe_name", myRecipeName);
                         intentMovie.putParcelableArrayListExtra("vlist", mySteps);
                         getActivity().startActivity(intentMovie);
+                    } else {
+                        myVideoUrl = mySteps.get(clickedItemIndex).getVideoURL();
+                        if (myVideoUrl != null) {
+                            myVideoUrlText.setText(myVideoUrl);
+                        }
+
                     }
 
                 }
@@ -122,6 +134,8 @@ public class EachRecipeFragment extends Fragment{
             return view;
         }
 
-
+    public String returnMyVideoUrl(){
+        return myVideoUrl;
+    }
 
 }

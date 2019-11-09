@@ -65,7 +65,6 @@ public class EachRecipeActivity extends AppCompatActivity {
     }
 
 
-    /* @Override
     public void onStepSelected(int position) {
 
         if (isTablet){
@@ -73,12 +72,8 @@ public class EachRecipeActivity extends AppCompatActivity {
             MovieFragment newMovieFragment = new MovieFragment();
             newMovieFragment.setMovieUrl(mySteps.get(position).getVideoURL());
 
-        } else {
-
         }
 
-
-
-    }*/
+    }
 
 }
