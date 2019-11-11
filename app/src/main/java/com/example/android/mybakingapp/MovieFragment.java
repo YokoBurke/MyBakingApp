@@ -116,6 +116,8 @@ public class MovieFragment extends Fragment {
             simpleExoPlayerView.setVisibility(View.VISIBLE);
             noVideoImage.setVisibility(View.GONE);
 
+            initializePlayer(Uri.parse(myVideoUrl));
+
         }
     }
 
