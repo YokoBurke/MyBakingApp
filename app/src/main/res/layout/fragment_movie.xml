@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".MovieFragment">
 
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/playerView"/>
+
+    <ImageView
+        android:id="@+id/no_video"
+        android:src="@drawable/baseline_movie_black_48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/my_video"
         android:layout_width="match_parent"
