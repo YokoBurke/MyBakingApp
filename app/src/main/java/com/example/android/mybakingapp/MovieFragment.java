@@ -96,6 +96,8 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
         simpleExoPlayerView = view.findViewById(R.id.playerView);
         noVideoImage = view.findViewById(R.id.no_video);
 
+        initializeMediaSession();
+
         videoUrlText  = (TextView) view.findViewById(R.id.my_video);
         videoUrlText.setText(myVideoUrl);
 
@@ -146,7 +148,6 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
         mExoPlayer.prepare(mediaSource);
         mExoPlayer.setPlayWhenReady(true);
 
-        //mExoPlayer.addListener((ExoPlayer.EventListener) view.getContext());
         mExoPlayer.addListener(this);
 
     }
@@ -182,7 +183,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
             mStateBuilder.setState(PlaybackStateCompat.STATE_PAUSED, mExoPlayer.getCurrentPosition(), 1f);
         }
 
-        //mMediaSession.setPlaybackState(mStateBuilder.build());
+        mMediaSession.setPlaybackState(mStateBuilder.build());
     }
 
     private void initializeMediaSession(){
