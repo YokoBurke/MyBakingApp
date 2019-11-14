@@ -43,16 +43,8 @@ public class EachRecipeFragment extends Fragment{
     private boolean isTablet;
     private String myRecipeName;
 
-    OnStepClickListener mCallback;
 
-    public interface OnStepClickListener {
-        void onStepSelected(int position);
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     public EachRecipeFragment() {
         // Required empty public constructor

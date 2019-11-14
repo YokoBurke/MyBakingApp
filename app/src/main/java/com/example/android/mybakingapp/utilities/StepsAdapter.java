@@ -25,21 +25,20 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
     private Context myContext;
     private String myRecipeName;
 
-
-    final private ListItemClickListener mOnClickListener;
+    private StepsClickListener stepCallBack;
 
     private boolean isTablet;
 
 
-    public interface ListItemClickListener{
-        void onListItemClick(int clickedItemIndex);
+    public interface StepsClickListener{
+        void StepOnClick(int clickedItemIndex);
     }
 
-    public StepsAdapter(Context context, ArrayList<Steps> StepsData, String recipeName, ListItemClickListener listener){
+    public StepsAdapter(Context context, ArrayList<Steps> StepsData, String recipeName, StepsClickListener listener){
         myStepsData = StepsData;
         myContext = context;
         myRecipeName = recipeName;
-        mOnClickListener = listener;
+        stepCallBack = listener;
     }
 
     class MyStepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -49,29 +48,13 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
             super(itemView);
             shortDescTextView = (TextView) itemView.findViewById(R.id.short_desc_steps);
             itemView.setOnClickListener(this);
-
-
         }
 
         @Override
         public void onClick(View view) {
 
             int clickedPosition = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPosition);
-
-             /* Log.i(LOG_TAG, "My Clicked POsition is " + Integer.toString(clickedPosition));
-
-            isTablet = myContext.getResources().getBoolean(R.bool.is_tablet);
-
-               if (!isTablet) {
-                    Intent intentMovie;
-                    intentMovie = new Intent(myContext, EachStepActivity.class);
-                    intentMovie.putExtra(Intent.EXTRA_TEXT, myStepsData.get(clickedPosition));
-                    intentMovie.putExtra("recipe_name", myRecipeName);
-                    intentMovie.putParcelableArrayListExtra("vlist", myStepsData);
-                    myContext.startActivity(intentMovie);
-                }   */
-
+            stepCallBack.StepOnClick(clickedPosition);
 
         }
     }
