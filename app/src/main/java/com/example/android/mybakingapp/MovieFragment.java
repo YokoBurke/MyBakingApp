@@ -1,6 +1,8 @@
 package com.example.android.mybakingapp;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
@@ -16,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import androidx.media.session.MediaButtonReceiver;
 
 import com.example.android.mybakingapp.data.Steps;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -40,6 +44,9 @@ import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
 
 public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
 
@@ -56,8 +63,6 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
 
     private MediaSessionCompat mMediaSession;
     private PlaybackStateCompat.Builder mStateBuilder;
-    private NotificationManager mNotificationManager;
-
 
     public MovieFragment() {
         // Required empty public constructor
@@ -171,6 +176,8 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
     public void onLoadingChanged(boolean isLoading) {
 
     }
+
+
 
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState){
