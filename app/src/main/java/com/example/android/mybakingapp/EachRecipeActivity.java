@@ -39,6 +39,7 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
     private RecyclerView.LayoutManager stepsLayoutManager;
     private RecyclerView.LayoutManager ingredientsLayoutManager;
     int i;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
         Log.i(CLASS_NAME, "IsTablet Status " + Boolean.toString(isTablet));
 
         if (isTablet){
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager = getSupportFragmentManager();
             movieFragment =  new MovieFragment();
 
             fragmentManager.beginTransaction()
@@ -108,7 +109,15 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
     @Override
     public void StepOnClick(int clickedItemIndex) {
         if (isTablet) {
-            movieFragment.setMovieUrl(mySteps.get(clickedItemIndex).getVideoURL());
+            Bundle urlBundle = new Bundle();
+            urlBundle.putString("myUrl", mySteps.get(clickedItemIndex).getVideoURL());
+            MovieFragment myMovieFragment = new MovieFragment();
+            myMovieFragment.setArguments(urlBundle);
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.video_container, myMovieFragment)
+                    .commit();
+
         } else {
             Intent intentEachStep;
             intentEachStep = new Intent(getApplicationContext(), EachStepActivity.class);

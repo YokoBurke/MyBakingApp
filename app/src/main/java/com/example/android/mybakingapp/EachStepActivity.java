@@ -58,8 +58,7 @@ public class EachStepActivity extends AppCompatActivity {
             myStepsData = childIntent.getParcelableArrayListExtra("vlist");
 
             myStepVideoUrl = mySteps.getVideoURL();
-            Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep) +" " + Integer.toString(myStepsData.size()));
-            getSupportActionBar().setTitle(myRecipeName + "Successful");
+            getSupportActionBar().setTitle(myRecipeName);
 
         }
 
@@ -100,33 +99,23 @@ public class EachStepActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This is the first step.", Toast.LENGTH_LONG).show();
                 } else {
                     currentStep--;
-
                     updateStepInfo(currentStep);
                 }
-
             }
         });
-
     }
 
         public void updateStepInfo(int myStepNo){
             myStepVideoUrl = myStepsData.get(myStepNo).getDescription();
             myStepDescription = myStepsData.get(myStepNo).getVideoURL();
 
-            Log.i(ClASS_NAME, myStepVideoUrl);
-            Log.i(ClASS_NAME, myStepDescription);
-
             Bundle bundle = new Bundle();
             bundle.putString("stepurl", myStepVideoUrl);
             bundle.putString("step description", myStepDescription);
-
             movieFragment.setArguments(bundle);
         }
-
 
         public String getMyData() {
             return myStepVideoUrl;
         }
-
-
 }

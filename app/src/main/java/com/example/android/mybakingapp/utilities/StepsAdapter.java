@@ -17,6 +17,9 @@ import com.example.android.mybakingapp.data.Steps;
 
 import java.util.ArrayList;
 
+
+//Note to self: RecyclerView OnClickListener https://www.youtube.com/watch?v=69C1ljfDvl0
+
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewHolder> {
 
     private static String LOG_TAG = StepsAdapter.class.getSimpleName();
@@ -26,9 +29,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
     private String myRecipeName;
 
     private StepsClickListener stepCallBack;
-
-    private boolean isTablet;
-
 
     public interface StepsClickListener{
         void StepOnClick(int clickedItemIndex);
@@ -44,12 +44,12 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
     class MyStepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView shortDescTextView;
-        StepsClickListener myStepsListner;
+        StepsClickListener myStepsListener;
 
         public MyStepsViewHolder(View itemView, StepsClickListener stepsClickListener) {
             super(itemView);
             shortDescTextView = (TextView) itemView.findViewById(R.id.short_desc_steps);
-            myStepsListner = stepsClickListener;
+            myStepsListener = stepsClickListener;
             itemView.setOnClickListener(this);
         }
 
@@ -57,7 +57,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
         public void onClick(View view) {
 
             int clickedPosition = getAdapterPosition();
-            myStepsListner.StepOnClick(clickedPosition);
+            myStepsListener.StepOnClick(clickedPosition);
 
         }
     }
