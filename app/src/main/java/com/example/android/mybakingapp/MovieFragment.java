@@ -97,7 +97,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
     }
 
     private void displayMovieData(){
-        
+
         if (myVideoUrl == ""){
             simpleExoPlayerView.setVisibility(View.GONE);
             noVideoImage.setVisibility(View.VISIBLE);
