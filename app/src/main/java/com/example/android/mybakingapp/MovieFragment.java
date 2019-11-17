@@ -86,9 +86,10 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
                              Bundle savedInstanceState) {
         view =inflater.inflate(R.layout.fragment_movie, container, false);
 
-
         simpleExoPlayerView = view.findViewById(R.id.playerView);
         noVideoImage = view.findViewById(R.id.no_video);
+
+        Log.i(ClASS_NAME, "ABC" + myVideoUrl);
 
         initializeMediaSession();
         displayMovieData();
@@ -96,7 +97,8 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
     }
 
     private void displayMovieData(){
-        if (myVideoUrl == null){
+        
+        if (myVideoUrl == ""){
             simpleExoPlayerView.setVisibility(View.GONE);
             noVideoImage.setVisibility(View.VISIBLE);
             videoExists = false;
@@ -105,6 +107,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
             simpleExoPlayerView.setVisibility(View.VISIBLE);
             noVideoImage.setVisibility(View.GONE);
             initializePlayer(Uri.parse(myVideoUrl));
+            Log.i(ClASS_NAME, myVideoUrl);
             videoExists = true;
         }
     }
