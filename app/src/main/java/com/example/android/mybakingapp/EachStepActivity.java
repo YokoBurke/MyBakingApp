@@ -56,21 +56,25 @@ public class EachStepActivity extends AppCompatActivity {
             myStepsData = childIntent.getParcelableArrayListExtra("vlist");
 
             myStepVideoUrl = mySteps.getVideoURL();
-            Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep) + Integer.toString(myStepsData.size()));
-
-
-            getSupportActionBar().setTitle(myRecipeName);
+            Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep) +" " + Integer.toString(myStepsData.size()));
+            getSupportActionBar().setTitle(myRecipeName + "Successful");
 
 
         }
 
+        Bundle urlBundle = new Bundle();
+        urlBundle.putString("myUrl", myStepVideoUrl);
+
+
         movieFragment = new MovieFragment();
-        stepFragment = new StepFragment();
+        //stepFragment = new StepFragment();
+
+        movieFragment.setArguments(urlBundle);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.video_container, movieFragment)
-                .add(R.id.step_container, stepFragment)
+                //.add(R.id.step_container, stepFragment)
                 .commit();
 
         nextButton = (Button) findViewById(R.id.steps_next);

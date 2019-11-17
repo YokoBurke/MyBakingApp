@@ -9,11 +9,37 @@
     android:orientation="horizontal"
     tools:context=".EachRecipeActivity">
 
-<fragment
-    android:layout_width="400dp"
-    android:layout_height="match_parent"
-    android:id="@+id/fragment_container"
-    android:name="com.example.android.mybakingapp.EachRecipeFragment"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_ingredient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 <View
     android:id="@+id/steps_separator"

@@ -1,6 +1,7 @@
 package com.example.android.mybakingapp.utilities;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         String myIngredient = myIngredients.get(position).getIngredient();
         holder.measureTextView.setText(myQuantity + " " + myMeasure.toLowerCase());
         holder.ingredientsTextView.setText(myIngredient);
+        Log.i(LOG_TAG, myIngredient);
 
     }
 

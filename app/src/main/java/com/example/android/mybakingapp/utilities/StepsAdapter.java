@@ -44,9 +44,12 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
     class MyStepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView shortDescTextView;
-        public MyStepsViewHolder(View itemView) {
+        StepsClickListener myStepsListner;
+
+        public MyStepsViewHolder(View itemView, StepsClickListener stepsClickListener) {
             super(itemView);
             shortDescTextView = (TextView) itemView.findViewById(R.id.short_desc_steps);
+            myStepsListner = stepsClickListener;
             itemView.setOnClickListener(this);
         }
 
@@ -54,7 +57,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
         public void onClick(View view) {
 
             int clickedPosition = getAdapterPosition();
-            stepCallBack.StepOnClick(clickedPosition);
+            myStepsListner.StepOnClick(clickedPosition);
 
         }
     }
@@ -64,7 +67,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyStepsViewH
     public StepsAdapter.MyStepsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int myLayoutId = R.layout.steps_item;
         View itemView = LayoutInflater.from(parent.getContext()).inflate(myLayoutId, parent, false);
-        MyStepsViewHolder myStepsViewHolder = new MyStepsViewHolder(itemView);
+        MyStepsViewHolder myStepsViewHolder = new MyStepsViewHolder(itemView, stepCallBack);
         return myStepsViewHolder;
     }
 

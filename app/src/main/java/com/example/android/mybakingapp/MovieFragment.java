@@ -52,7 +52,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
 
 
     final static String ClASS_NAME = MovieFragment.class.getSimpleName();
-    private String thisVideoURL;
+    //private String thisVideoURL;
     TextView videoUrlText;
     private int mListIndex;
     private SimpleExoPlayerView simpleExoPlayerView;
@@ -72,23 +72,11 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle myBundle = this.getArguments();
+        if (myBundle != null) {
+            myVideoUrl = myBundle.getString("myUrl");
+        }
 
-        Log.i(ClASS_NAME, "OnCreateView is Called 2");
-
-
-        /* Intent movieChildIntent = getActivity().getIntent();
-        if (movieChildIntent.hasExtra(Intent.EXTRA_TEXT)) {
-
-            mySteps = (Steps) movieChildIntent.getParcelableExtra(Intent.EXTRA_TEXT);
-            myRecipeName = movieChildIntent.getStringExtra("recipe_name");
-            currentStep = mySteps.getId();
-            Log.i(ClASS_NAME, "Video URL: " + mySteps.getVideoURL());
-
-
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(myRecipeName);
-
-
-        } */
     }
 
 
@@ -108,19 +96,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
 
         displayMovieData();
 
-        /* EachStepActivity eachStepActivity = (EachStepActivity) getActivity();
-        myVideoUrl = eachStepActivity.getMyData();
 
-         */
-
-
-        /* if (getArguments() != null) {
-            thisVideoURL = getArguments().getString("stepurl");
-            Log.i(ClASS_NAME, thisVideoURL);
-            videoURL.setText(thisVideoURL);
-        } else {
-            videoURL.setText("Is this working??");
-        } */
 
         return view;
     }
@@ -131,10 +107,8 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
             noVideoImage.setVisibility(View.VISIBLE);
 
         } else {
-
             simpleExoPlayerView.setVisibility(View.VISIBLE);
             noVideoImage.setVisibility(View.GONE);
-
             initializePlayer(Uri.parse(myVideoUrl));
 
         }

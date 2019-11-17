@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (isTablet) {
             mLayoutManager = new GridLayoutManager(this, 3);
         } else {
-            //mLayoutManager = new LinearLayoutManager(this);
-           // mLayoutManager = new GridLayoutManager(this, GridLayoutManager.VERTICAL); }
+
             mLayoutManager = new GridLayoutManager(this, 1);
 
         }
