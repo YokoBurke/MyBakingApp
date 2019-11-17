@@ -114,6 +114,7 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
             MovieFragment myMovieFragment = new MovieFragment();
             myMovieFragment.setArguments(urlBundle);
 
+
             fragmentManager.beginTransaction()
                     .replace(R.id.video_container, myMovieFragment)
                     .commit();
@@ -126,6 +127,7 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
             intentEachStep.putParcelableArrayListExtra("vlist", mySteps);
             startActivity(intentEachStep);
         }
+
     }
 
 }
