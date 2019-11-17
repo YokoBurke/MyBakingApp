@@ -52,7 +52,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
 
 
     final static String ClASS_NAME = MovieFragment.class.getSimpleName();
-    //private String thisVideoURL;
+
     TextView videoUrlText;
     private int mListIndex;
     private SimpleExoPlayerView simpleExoPlayerView;
@@ -63,6 +63,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
 
     private MediaSessionCompat mMediaSession;
     private PlaybackStateCompat.Builder mStateBuilder;
+    private boolean videoExists;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -90,14 +91,7 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
         noVideoImage = view.findViewById(R.id.no_video);
 
         initializeMediaSession();
-
-        videoUrlText  = (TextView) view.findViewById(R.id.my_video);
-        videoUrlText.setText(myVideoUrl);
-
         displayMovieData();
-
-
-
         return view;
     }
 
@@ -105,12 +99,13 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
         if (myVideoUrl == null){
             simpleExoPlayerView.setVisibility(View.GONE);
             noVideoImage.setVisibility(View.VISIBLE);
+            videoExists = false;
 
         } else {
             simpleExoPlayerView.setVisibility(View.VISIBLE);
             noVideoImage.setVisibility(View.GONE);
             initializePlayer(Uri.parse(myVideoUrl));
-
+            videoExists = true;
         }
     }
 
@@ -217,22 +212,36 @@ public class MovieFragment extends Fragment implements ExoPlayer.EventListener {
     }
 
     private void releasePlayer(){
-        mExoPlayer.stop();
-        mExoPlayer.release();
-        mExoPlayer = null;
+        if (videoExists) {
+            mExoPlayer.stop();
+            mExoPlayer.release();
+            mExoPlayer = null;
+        }
     }
 
     @Override
     public void onPause(){
         super.onPause();
-        releasePlayer();
+        if (videoExists) {
+            mExoPlayer.setPlayWhenReady(false);
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if (videoExists) {
+            mExoPlayer.setPlayWhenReady(true);
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        releasePlayer();
-        mMediaSession.setActive(false);
+        if (videoExists) {
+            releasePlayer();
+            mMediaSession.setActive(false);
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +36,8 @@ public class EachStepActivity extends AppCompatActivity {
     Button previousButton;
 
     MovieFragment movieFragment;
-    StepFragment stepFragment;
+    TextView stepDescriptionTextView;
+
 
     private boolean isTablet;
 
@@ -45,7 +47,7 @@ public class EachStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_each_step);
 
-
+        stepDescriptionTextView = (TextView) findViewById(R.id.step_descriptions);
 
         Intent childIntent = this.getIntent();
         if (childIntent.hasExtra(Intent.EXTRA_TEXT)) {
@@ -59,22 +61,18 @@ public class EachStepActivity extends AppCompatActivity {
             Log.i(ClASS_NAME, "Video URL: " + myStepVideoUrl + "  " + Integer.toString(currentStep) +" " + Integer.toString(myStepsData.size()));
             getSupportActionBar().setTitle(myRecipeName + "Successful");
 
-
         }
 
+        stepDescriptionTextView.setText(mySteps.getDescription());
         Bundle urlBundle = new Bundle();
         urlBundle.putString("myUrl", myStepVideoUrl);
 
-
         movieFragment = new MovieFragment();
-        //stepFragment = new StepFragment();
-
         movieFragment.setArguments(urlBundle);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.video_container, movieFragment)
-                //.add(R.id.step_container, stepFragment)
                 .commit();
 
         nextButton = (Button) findViewById(R.id.steps_next);
@@ -123,7 +121,6 @@ public class EachStepActivity extends AppCompatActivity {
             bundle.putString("step description", myStepDescription);
 
             movieFragment.setArguments(bundle);
-            stepFragment.setArguments(bundle);
         }
 
 
