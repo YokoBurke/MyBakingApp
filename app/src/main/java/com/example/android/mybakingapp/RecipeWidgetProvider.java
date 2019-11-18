@@ -6,11 +6,18 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+import android.widget.TextView;
+
+import com.example.android.mybakingapp.data.Ingredients;
+
+import java.util.ArrayList;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class RecipeWidgetProvider extends AppWidgetProvider {
+
+    private ArrayList<Ingredients> myIngredients;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -20,6 +27,7 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_widget_provider);
 
+
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
@@ -28,6 +36,17 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent){
+        super.onReceive(context, intent);
+        RemoteViews myViews = new RemoteViews(context.getPackageName(), R.layout.recipe_widget_provider);
+        if (intent.getAction().equals("Ingredients")){
+        myIngredients = intent.getExtras().getParcelable("Ingredients");
+        String x = myIngredients.get(0).getIngredient();
+        myViews.setTextViewText(R.id.appwidget_text, x);
+        }
     }
 
     @Override
@@ -41,6 +60,8 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
+
+
     }
 
     @Override

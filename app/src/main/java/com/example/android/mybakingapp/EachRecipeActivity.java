@@ -1,5 +1,6 @@
 package com.example.android.mybakingapp;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -85,10 +86,6 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
         stepsRecyclerView.setAdapter(mStepsAdapter);
 
 
-
-
-
-
         isTablet = getResources().getBoolean(R.bool.is_tablet);
         Log.i(CLASS_NAME, "IsTablet Status " + Boolean.toString(isTablet));
 
@@ -104,6 +101,12 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
             Log.i(CLASS_NAME, mySteps.get(0).getVideoURL());
 
         }
+
+        Intent widgetIntent = new Intent(this, RecipeWidgetProvider.class);
+        widgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        widgetIntent.putExtra("Ingredients", myIngredients);
+        setResult(RESULT_OK, widgetIntent);
+        sendBroadcast(widgetIntent);
     }
 
     @Override

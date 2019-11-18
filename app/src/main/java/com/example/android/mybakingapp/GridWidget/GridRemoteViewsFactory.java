@@ -17,6 +17,7 @@ public class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
 
     }
 
+    //called on start and when notifyAppWidgetViewDataChanged is called
     @Override
     public void onDataSetChanged() {
 
