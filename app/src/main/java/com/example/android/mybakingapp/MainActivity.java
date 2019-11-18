@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         recyclerView.setAdapter(mAdapter);
 
         int x = mAdapter.getItemCount();
-        Log.i("MainAct", "Adapter Count = " + Integer.toString(x));
+
 
     }
 

@@ -56,7 +56,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
             Intent intent = new Intent(myContext, EachRecipeActivity.class);
             intent.putExtra(Intent.EXTRA_TEXT, myBakingRecipe.get(clickedPosition));
-            Log.i(LOG_TAG, myBakingRecipe.get(clickedPosition).getName());
             myContext.startActivity(intent);
         }
 
@@ -72,7 +71,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         MyViewHolder recipeViewHolder = new MyViewHolder(itemView);
 
         x++;
-        Log.i(LOG_TAG, "my inflater count " + Integer.toString(x));
         return recipeViewHolder;
     }
 
@@ -82,7 +80,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         String myRecipeName = myBakingRecipe.get(position).getName();
         String myServingNumber = Integer.toString(myBakingRecipe.get(position).getServings());
 
-        Log.i(LOG_TAG, myRecipeName + "seriouisly!");
 
         holder.recipeNameTextView.setText(myRecipeName);
         holder.servingsTextView.setText(myServingNumber);

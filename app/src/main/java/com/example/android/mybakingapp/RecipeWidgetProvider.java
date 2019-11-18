@@ -47,10 +47,10 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 
         if (intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
         myIngredients = intent.getExtras().getParcelableArrayList("Ingredients");
-        Log.i("RecipeWidgetProvider", "My Ingredient Size Is " + Integer.toString(myIngredients.size()));
-        String x = myIngredients.get(0).getIngredient();
-        myViews.setTextViewText(R.id.appwidget_text, x);
-        Log.i("RecipeWidgetProvider", x);
+        if (myIngredients != null) {
+            String x = myIngredients.get(0).getIngredient();
+            myViews.setTextViewText(R.id.appwidget_text, x);
+        }
 
         AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, RecipeWidgetProvider.class), myViews);
 
