@@ -104,9 +104,10 @@ public class EachRecipeActivity extends AppCompatActivity implements StepsAdapte
 
         Intent widgetIntent = new Intent(this, RecipeWidgetProvider.class);
         widgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        widgetIntent.putExtra("Ingredients", myIngredients);
+        widgetIntent.putParcelableArrayListExtra("Ingredients", myIngredients);
         setResult(RESULT_OK, widgetIntent);
         sendBroadcast(widgetIntent);
+        Log.i(CLASS_NAME, "Broadcasted the intent");
     }
 
     @Override

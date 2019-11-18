@@ -1,4 +1,4 @@
-package com.example.android.mybakingapp.GridWidget;
+package com.example.android.mybakingapp.Widgettools;
 
 import android.content.Context;
 import android.widget.RemoteViews;

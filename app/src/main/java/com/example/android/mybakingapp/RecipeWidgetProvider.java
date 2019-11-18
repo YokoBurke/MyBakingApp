@@ -3,8 +3,10 @@ package com.example.android.mybakingapp;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
@@ -42,10 +44,16 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent){
         super.onReceive(context, intent);
         RemoteViews myViews = new RemoteViews(context.getPackageName(), R.layout.recipe_widget_provider);
-        if (intent.getAction().equals("Ingredients")){
-        myIngredients = intent.getExtras().getParcelable("Ingredients");
+
+        if (intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
+        myIngredients = intent.getExtras().getParcelableArrayList("Ingredients");
+        Log.i("RecipeWidgetProvider", "My Ingredient Size Is " + Integer.toString(myIngredients.size()));
         String x = myIngredients.get(0).getIngredient();
         myViews.setTextViewText(R.id.appwidget_text, x);
+        Log.i("RecipeWidgetProvider", x);
+
+        AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, RecipeWidgetProvider.class), myViews);
+
         }
     }
 

@@ -4,6 +4,7 @@
     android:initialLayout="@layout/recipe_widget_provider"
     android:minWidth="60dp"
     android:minHeight="80dp"
-    android:previewImage="@drawable/example_appwidget_preview"
     android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/example_appwidget_preview"
     android:widgetCategory="home_screen"/>
+
