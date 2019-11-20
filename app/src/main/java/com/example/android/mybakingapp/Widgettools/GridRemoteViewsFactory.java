@@ -1,14 +1,21 @@
 package com.example.android.mybakingapp.Widgettools;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+
+import com.example.android.mybakingapp.R;
+import com.example.android.mybakingapp.data.Ingredients;
 
 public class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     Context mContext;
+    Ingredients myIngredients;
 
     public GridRemoteViewsFactory (Context applicationContext) {
+
         mContext = applicationContext;
     }
 
@@ -20,6 +27,7 @@ public class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     //called on start and when notifyAppWidgetViewDataChanged is called
     @Override
     public void onDataSetChanged() {
+    //receive intent and save it in Ingredients
 
     }
 

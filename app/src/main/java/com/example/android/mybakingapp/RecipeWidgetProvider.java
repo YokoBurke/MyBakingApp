@@ -54,7 +54,9 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 
         AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, RecipeWidgetProvider.class), myViews);
 
+
         }
+
     }
 
     @Override
