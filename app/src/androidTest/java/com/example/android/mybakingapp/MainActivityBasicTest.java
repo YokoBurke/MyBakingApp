@@ -26,8 +26,8 @@ public class MainActivityBasicTest {
     @Test
     public void clickRecipeCard(){
 
-        //onData(anything()).inAdapterView(withId(R.id.recycle_recipe_card)).atPosition(1).perform(click());
-        //onView(withId(R.id.recipe_name)).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.recycle_recipe_card)).atPosition(1).perform(click());
+        onView(withId(R.id.recipe_name)).check(matches(isDisplayed()));
 
     }
 }

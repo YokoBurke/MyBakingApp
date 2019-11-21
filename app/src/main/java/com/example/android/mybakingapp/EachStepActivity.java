@@ -113,6 +113,7 @@ public class EachStepActivity extends AppCompatActivity {
             bundle.putString("stepurl", myStepVideoUrl);
             bundle.putString("step description", myStepDescription);
             movieFragment.setArguments(bundle);
+
         }
 
         public String getMyData() {
